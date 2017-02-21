@@ -5,13 +5,12 @@ struct Node{
 	Node *lchild;
 	Node *rchild;
 	int c;
-}Tree[50];
+}Tree[100];
 int loc;
 Node *creat(){
 	Tree[loc].lchild=Tree[loc].rchild=NULL;
 	return &Tree[loc++];
 }
-char str1[30],str2[30];
 
 void preOrder(Node *T){
 	printf("%d ",T->c);
@@ -33,6 +32,7 @@ Node *build(Node *T,int x){
 	if(T==NULL){
 		T=creat();
 		T->c=x;
+		return T;
 	}else if(x<T->c){
 		T->lchild=build(T->lchild,x);
 	}else if(x>T->c){
