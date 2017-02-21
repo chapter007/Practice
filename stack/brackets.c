@@ -7,11 +7,12 @@ int main(){
 	char newc[100];
 	stack<int> S;
 	while(scanf("%s",origin)!=EOF){
-		for(int i=0;origin[i]!=0;i++){
+		int i;
+		for(i=0;origin[i]!=0;i++){
 			if(origin[i]==')'){
 				if(S.empty()){
 					newc[i]='?';
-				}else if(origin[S.top()]=='('){
+				}else{
 					S.pop();
 					newc[i]=' ';
 				}
@@ -22,10 +23,10 @@ int main(){
 
 		}
 		while(!S.empty()){
-			int i=S.top();
-			newc[i]='$';
+			newc[S.top()]='$';
 			S.pop();
 		}
+		newc[i]=0;
 		puts(origin);
 		puts(newc);
 	}
