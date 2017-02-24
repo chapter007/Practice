@@ -26,12 +26,18 @@ void init(){
 }
 
 int main(){
-	int n,k=0;
+	int n;
 	init();
 	while(scanf("%d",&n)!=EOF){
+		bool first=true;
+		int k=0;
 		for(int i=0;i<n;i++){
 			if(mark[i]&&i%10==1){
-				printf("%d ",i);
+				if(first){
+					printf("%d",i);
+					first=false;
+				}else printf(" %d",i);
+
 				k=1;
 			}
 		}
