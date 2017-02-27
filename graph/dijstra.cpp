@@ -21,6 +21,7 @@ int main()
     while(scanf("%d %d",&n,&m)!=EOF)
     {
         if(m==0&&n==0) break;
+        for(int i=1;i<=n;i++) edge[i].clear();
         while(m--)
         {
             int a,b,c,cost;
@@ -55,8 +56,7 @@ int main()
                     dis[t]=dis[newP]+c;
                     cost[t]=cost[newP]+co;//更新花费和路程
                 }
-            }
-            //dijstra处理过程
+            }//dijstra处理过程
             int min=123123123;
             for(int j=1; j<=n; j++)
             {
