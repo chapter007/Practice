@@ -1,14 +1,10 @@
 #include <stdio.h>
-#include <algorithm>
-#define N 100001
+#include <vector>
 
 using namespace std;
 
-int max(int a,int b){
-	return a>b?a:b; 
-}
 
-int dp[100];
+vector<int> A;
 
 int main()
 {
@@ -18,27 +14,24 @@ int main()
         while(T--)
         {
             int n;
-            int a[100],b[N]= {0},c[N]= {0};
+            int a;
             scanf("%d",&n);
+            A.clear();
             for(int i=0; i<n; i++)
             {
-                scanf("%d",&a[i]);
+                scanf("%d",&a);
+                A.push_back(a);
             }//input
-            for(int i=0;i<n;i++){
-            	int tmax=1;
-            	for(int j=0;j<i;j++){
-            		int d=a[j]-a[j+1];
-            		if(a[j+1]-a[j+2]==d){
-            			tmax=max(tmax,dp[j]+1);
-					}
-				}
-				dp[i]=tmax;
+            if(A.size()<=2){
+            	printf("%d\n",A.size());
 			}
-			int ans=1;
-			for(int i=0;i<n;i++){
-				ans=max(ans,dp[i]);
+			int s=2;
+			int ans=2;
+			for(int i=2;i<A.size();i++){
+				s=(A[i]-A[i-1]==A[i-1]-A[i-2]?s+1:2);
+				if(ans<s) ans=s;
 			}
-			printf("%d\n",ans+1);
+			printf("%d\n",ans);
         }
     }
     return 0;
