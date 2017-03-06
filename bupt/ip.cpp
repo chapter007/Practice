@@ -41,8 +41,8 @@ int convert(char ip[]){
 }
 int main(){
 	int T;
-	while(scanf("%d",&T)!=EOF){
-		while(T-->0){
+	scanf("%d",&T);
+		while(T--){
 			//printf("test %d\n",T);
 			int flag=-1;
 			char ip[30];
@@ -54,7 +54,7 @@ int main(){
 			else
 				printf("No\n");
 		}
-	}
+	
 	return 0;
 }
 

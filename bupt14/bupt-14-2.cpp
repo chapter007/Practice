@@ -9,8 +9,8 @@ vector<int> A;
 int main()
 {
     int T;
-    while(scanf("%d",&T)!=EOF)
-    {
+    scanf("%d",&T);
+    
         while(T--)
         {
             int n;
@@ -24,15 +24,16 @@ int main()
             }//input
             if(A.size()<=2){
             	printf("%d\n",A.size());
-			}
-			int s=2;
-			int ans=2;
-			for(int i=2;i<A.size();i++){
+			}else{
+				int s=2;
+				int ans=2;
+				for(int i=2;i<A.size();i++){
 				s=(A[i]-A[i-1]==A[i-1]-A[i-2]?s+1:2);
 				if(ans<s) ans=s;
 			}
-			printf("%d\n",ans);
+			printf("%d\n",ans);	
+			}
         }
-    }
+    
     return 0;
 }
