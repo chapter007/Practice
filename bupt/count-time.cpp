@@ -1,5 +1,5 @@
 #include <stdio.h>
-// 
+//题意理解错误，题目是要求第一个时间点到第二个时间点需要多长时间！！！审题务必要清楚 
 struct time{
 	int h,m;
 	void next(){
