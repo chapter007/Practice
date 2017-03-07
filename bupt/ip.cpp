@@ -17,7 +17,6 @@ int convert(char ip[]){
 						c*=10;
 						ans+=tmp;
 						check=true;
-						
 					}else{
 						ans=-1;
 						break;
