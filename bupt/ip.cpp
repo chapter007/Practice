@@ -22,12 +22,10 @@ int convert(char ip[]){
 						break;
 					}
 					j--;
-					
 				}
 				j--;
 				p++;
-				//printf("test %d\n",p);
-				//printf("test %d\n",ans);
+				printf("test %d\n",ans);
 				if(ans>=0&&ans<=255&&check) flag=1;
 				else{
 					flag=-1;
