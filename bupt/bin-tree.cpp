@@ -14,6 +14,24 @@ struct node{
 int loc=0;
 queue<node *> Q;
 
+void test_print(node *t){
+	if(t!=NULL){
+		Q.push(t);
+		node *tree;
+		while(!Q.empty()){
+			tree=Q.front();
+			printf("test %d ",tree->lchild->data);
+			Q.pop();
+			if(tree->lchild){
+				Q.push(tree->lchild);
+			}
+			if(tree->rchild){
+				Q.push(tree->rchild);
+			}
+		}
+	}
+}
+
 int main(){
 	int t,k=1,i,j,flag;
 	int c[101];
@@ -36,31 +54,20 @@ int main(){
 			Tree[x].depth=Tree[y].depth+1;
 		}//input
 		printf("Q%d:\n",k);
-		//print_pre(Tree);this tree is different
-		int c=1,l=1;
-		while(c<102){
-			if(Tree[c].data>0){
-				if(Tree[c].depth==l){
-					printf("%d",Tree[c].data);
-				}
-				printf("\n");	
-			}
-			c++;
-			l++;
-		}
-		k++;
-		printf("\n");
-		/*i=j=c[1]=1; flag=1;  
+		
+		//输出中，数组下标的使用非常灵活 
+		
+		i=j=c[1]=1; flag=1;  
         while(i<=j){  
-            if(Tree[c[i]].lchild!=NULL) c[++j]=(*Tree[c[i]].lchild).data;  
-            if(Tree[c[i]].rchild!=NULL) c[++j]=(*Tree[c[i]].rchild).data;  
+            if(Tree[c[i]].lchild!=NULL) c[++j]=Tree[c[i]].lchild->data;  
+            if(Tree[c[i]].rchild!=NULL) c[++j]=Tree[c[i]].rchild->data;  
             if(i>1) putchar(Tree[c[i]].depth!=flag?'\n':' ');  
             printf("%d",Tree[c[i]].data);  
-            flag=Tree[c[i]].depth;  
-            i++;  
+            flag=Tree[c[i]].depth;
+            i++;
         }
         k++;
-        puts("");*/  
+        puts("");
 	}
 	return 0;
 } 
