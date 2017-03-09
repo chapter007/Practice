@@ -6,7 +6,7 @@
 using namespace std;
 
 char str[N];
-int d[N];
+int d[1000];
 
 int abs(int a){
 	return a>0?a:-a;
@@ -18,7 +18,7 @@ void clean(){
 }
 
 void clean_d(){
-	for(int i=0;i<N;i++){
+	for(int i=0;i<1000;i++){
 		d[i]=0;
 	}
 }
@@ -45,6 +45,15 @@ int main(){
 				//printf("test-query %d\n",x);
 				clean_d();
 				int len=strlen(str);
+				int top=len-1,base=0;
+				/*while(top>=base){
+					int mid=(top+base)/2;
+					if(str[mid]==str[x]&&mid!=x){
+						d[k]=abs(mid-x);
+						k++;
+					}else if(mid>x) top=mid-1;
+					else base=mid+1;
+				}*/
 				for(int i=0;i<len;i++){//直接查找会超时 
 					if(str[i]==str[x]&&i!=x){
 						d[k]=abs(i-x);
