@@ -4,41 +4,23 @@
 
 using namespace std;
 
-struct S{
-	int num;
-	int cnt;
-	bool operator < (const S &A) const{
-		return cnt>A.cnt;
-	}
-}s1[N];
-
-void clean(){
-	for(int i=0;i<N;i++){
-		s1[i].num=0;		
-		s1[i].cnt=0;				
-	}
-}
-
 int main(){
 	int T;
 	scanf("%d",&T);
 	while(T--){
-		int num[101]={0},n;
-		clean();
+		int num[101]={0},cnt[N]={0},n;
 		scanf("%d",&n);
 		for(int i=0;i<n;i++){
 			scanf("%d",&num[i]);
-			s1[num[i]].num=num[i];
-			s1[num[i]].cnt++;
-			//cnt[num[i]]++;
+			cnt[num[i]]++;
 		}//input
 		int max=0,ans[N]={0};
 		for(int i=0;i<N;i++){
-			if(s1[i].cnt>max) max=s1[i].cnt; 
+			if(cnt[i]>max) max=cnt[i]; 
 		}
 		for(int i=0;i<N;i++){
-			if(s1[i].cnt==max){
-				ans[i]=s1[i].num;
+			if(cnt[i]==max){
+				ans[i]=i;
 			}
 		}
 		sort(ans,ans+N);
