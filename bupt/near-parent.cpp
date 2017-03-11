@@ -85,7 +85,7 @@ int main(){
 						Q.push(tmp);
 					}
 				}
-			}else{
+			}else{//²»Í¬²ã 
 				if(t[a].level>t[b].level){
 					Q.push(t[b].data);
 				}else{
