@@ -16,9 +16,9 @@ int main(){
 		for(int i=1;i<=L1;i++){
 			for(int j=1;j<=L2;j++){
 				if(s1[i-1]!=s2[j-1]){
-					dp[i][j]=max(dp[i][j-1],dp[i-1][j]);
+					dp[i][j]=max(dp[i][j-1],dp[i-1][j]);//如果两个字符串不相等，dp[i][j]也要更新，更新为 dp之前的最大值 
 				}else{
-					dp[i][j]=dp[i-1][j-1]+1;
+					dp[i][j]=dp[i-1][j-1]+1;//如果两个字符串相等，则dp[i][j]+1是在他的前一个版本的基础上+1的 
 				}
 			}
 		}

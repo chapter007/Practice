@@ -24,7 +24,13 @@ void print(){
 			}
 	}
 }
+void clean(){
+	while(!Q.empty()) Q.pop();
+} 
 
+int min(int a,int b){
+	return a>b?b:a;
+}
 int main(){
 	int T;
 	scanf("%d",&T); 
@@ -56,81 +62,64 @@ int main(){
 		scanf("%d",&M);
 		while(M--){
 			int a,b,ans=1,k=0;
+			clean();
 			scanf("%d %d",&a,&b);//find a b's parent
-			Q.push(1);
-			while(!Q.empty()){
-				int c=Q.front();
-				Q.pop();
-				if(t[c].lchild&&t[c].rchild){
-					if(t[c].lchild->data==a&&t[c].rchild->data==b||
-					t[c].lchild->data==b&&t[c].rchild->data==a){
-						ans=t[c].data;
-						break;
-					}
-				}
-				if(t[c].data==a||t[c].data==b){
-					r[k].level=t[c].level;
-					r[k].data=t[c].data;
-					k++;
-				}
-				if(t[c].lchild){
-					int tmp=t[c].lchild->data;
-					Q.push(tmp);
-				}
-				if(t[c].rchild){
-					int tmp=t[c].rchild->data;
-					Q.push(tmp);
-				}	
-			}
-			printf("test-k %d\n",k);
-			if(r[0].level>r[1].level) ans=r[1].data;
-			else ans=r[0].data;
-			/*for(int i=0;i<N;i++){
-				//这个判断太繁杂了，难免会出错，很难把所有情况考虑到 
-				if(t[i].data==a&&t[i].lchild){
-					if(t[i].lchild->data==b){
-						ans=a;
-						break;
-					}else{
-						int tmp=t[i].lchild->data;
-						while(t[tmp].data>0){
-							if(t[tmp].data==b){
-								ans=a;
-								break;
-							}else if(t[tmp].lchild){
-								tmp=t[tmp].lchild->data;
-							}else{
-								break;
-							}
+			if(t[a].level==t[b].level){//a,b同层 
+				Q.push(1);
+				while(!Q.empty()){
+					int c=Q.front();
+					Q.pop();
+					if(t[c].lchild&&t[c].rchild){
+						if(t[c].lchild->data==a&&t[c].rchild->data==b||
+						t[c].lchild->data==b&&t[c].rchild->data==a){
+							ans=t[c].data;
+							break;
 						}
 					}
+					if(t[c].lchild){
+						int tmp=t[c].lchild->data;
+						Q.push(tmp);
+					}
+					if(t[c].rchild){
+						int tmp=t[c].rchild->data;
+						Q.push(tmp);
+					}
 				}
-				if(t[i].data==b&&t[i].lchild){
-					if(t[i].lchild->data==a){
-						ans=b;
-						break;
-					}else{
-						int tmp=t[i].lchild->data;
-						while(t[tmp].data>0){
-							if(t[tmp].data==a){
+			}else{
+				if(t[a].level>t[b].level){
+					Q.push(t[b].data);
+				}else{
+					Q.push(t[a].data);
+				}
+				while(!Q.empty()){
+					int c=Q.front();
+					Q.pop();
+					if(t[c].lchild){
+						if(t[c].lchild->data==a||t[c].lchild->data==b){
+							if(t[a].level>t[b].level){
 								ans=b;
-								break;
-							}else if(t[tmp].lchild){
-								tmp=t[tmp].lchild->data;
 							}else{
-								break;
+								ans=a;
 							}
+							break;
 						}
+						int tmp=t[c].lchild->data;
+						Q.push(tmp);
+					}
+					if(t[c].rchild){
+						if(t[c].rchild->data==a||t[c].rchild->data==b){
+							if(t[a].level>t[b].level){
+								ans=b;
+							}else{
+								ans=a;
+							}
+							break;
+						}
+						int tmp=t[c].rchild->data;
+						Q.push(tmp);
 					}
 				}
-				if(t[i].lchild!=NULL&&t[i].rchild!=NULL){
-					if(t[i].lchild->data==a&&t[i].rchild->data==b||
-					t[i].lchild->data==b&&t[i].rchild->data==a){
-						ans=t[i].data;
-						break;
-					}
-				}*/
-			 
+			}
 			printf("%d\n",ans);
 			
 		}
