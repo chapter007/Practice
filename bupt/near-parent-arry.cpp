@@ -28,14 +28,13 @@ int main(){
 		int m;
 		scanf("%d",&m);
 		while(m--){
-			int x,y,ans=1,i=0,j=0;
+			int x,y,ans=1,i=1,j=1;
 			bool flag=false;
 			scanf("%d %d",&x,&y);
 			clean();
-			int t=x;
-			int r=y;
+			Q1[0]=x;Q2[0]=y;
 			while(Tree[x]!=0){
-				Q1[i]=Tree[x];
+				Q1[i]=Tree[x];//Q1 Q2中保存着x,y的父节点序列 
 				x=Tree[x];
 				i++;
 			}
@@ -44,23 +43,12 @@ int main(){
 				j++;
 				y=Tree[y];
 			}
+			
 			for(int q=0;q<i;q++){
 				for(int w=0;w<j;w++){
-					//printf("test Q1 Q2 %d %d\n",Q1[q],Q2[w]);
+					//printf("test x %d y %d Q1 Q2 %d %d\n",t,r,Q1[q],Q2[w]);//输出测试一下 
 					if(Q1[q]==Q2[w]){
 						ans=Q1[q];
-						flag=true;
-						break;
-					}
-					if(Q1[q]==r){
-						//printf("test Q1 %d\n",r);
-						ans=r;
-						flag=true;
-						break;
-					}
-					if(Q2[w]==t){
-						//printf("test Q2 %d\n",t);
-						ans=t;
 						flag=true;
 						break;
 					}
