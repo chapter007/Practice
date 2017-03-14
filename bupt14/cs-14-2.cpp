@@ -7,48 +7,48 @@
 
 using namespace std;
 
-int buf[N][N];
+int buf[N][N],tb[N][N];
+int n,m;
 
-void print(int n,int m,int a){
-	if(a==0){
-		for(int i=0;i<n;i++){
-			for(int j=0;j<m;j++){
-				printf("%d",buf[i][j]);
-			}
-			printf("\n");
-		}
-	}else if(a==90){
-		for(int i=0;i<n;i++){
-			for(int j=m-1;j>=0;j--){
-				printf("%d",buf[j][i]);
-			}
-			printf("\n");
-		}
-	}else if(a==180){
-		for(int i=n-1;i>=0;i--){
-			for(int j=0;j<m;j++){
-				printf("%d",buf[i][j]);
-			}
-			printf("\n");
-		}
-	}else if(a==270){
-		for(int i=0;i<n;i++){
-			for(int j=0;j<m;j++){
-				printf("%d",buf[j][i]);
-			}
-			printf("\n");
+void rotate(){
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			tb[j][n-i-1]=buf[i][j];//把buf里的值转存到tmp里 
 		}
 	}
-	
+//	
+//		for(int i=0;i<m;i++){
+//			for(int j=0;j<n;j++){
+//				printf("%d",tb[i][j]);
+//			}
+//			printf("\n");
+//		}
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			buf[i][j]=tb[i][j];//再转回来
+		}
+	}
+	int x=m;
+	m=n;
+	n=x;
+}
+void print(){
+		for(int i=0;i<n;i++){
+			for(int j=0;j<m;j++){
+				printf("%d",buf[i][j]);
+			}
+			printf("\n");
+		}
 }
 
 int main(){
 	int T;
 	scanf("%d",&T);
 	while(T--){
-		int n,m,angle;
+		int angle;
 		string tmp[N];
 		memset(buf,-1,sizeof(buf));
+		memset(tb,-1,sizeof(tmp));
 		scanf("%d %d",&n,&m);
 		for(int i=0;i<n;i++){
 			cin>>tmp[i];
@@ -60,15 +60,12 @@ int main(){
 			}
 		}
 		scanf("%d",&angle);//输入结束，开始处理输出
-		if(angle==0){
-			print(n,m,0);
-		}else if(angle==90){
-			print(m,n,90);
-		}else if(angle==180){
-			print(n,m,180);
-		}else if(angle==270){
-			print(m,n,270);
+		int ang=angle/90;
+		while(ang!=0){
+			rotate();
+			ang--;
 		}
+		print();
 	}
 	return 0;
 }
