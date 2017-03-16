@@ -1,6 +1,7 @@
 #include <stack>
 #include <stdio.h>
 using namespace std;
+
 char str[220]; //保存表达式字符串
 int mat[][5] = { //优先级矩阵,若mat[i][j] == 1，则表示i号运算符优先级大于j号
 1,0,0,0,0,
